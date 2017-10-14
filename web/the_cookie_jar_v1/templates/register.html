@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% set active_page = "register" %}
+{% block body %}
+<br />
+
+<div class="row">
+    <div class="col">
+        <center><h2>Register your account here</h2></center>
+    </div>
+</div>
+
+{% if error %}
+    <div class="row d-flex justify-content-center">
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    </div>
+{% endif %}
+<br />
+<div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+        <form action="/register" method="POST">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

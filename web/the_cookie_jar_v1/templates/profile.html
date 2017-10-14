@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% set active_page = "profile" %}
+{% block body %}
+<br />
+
+<div class="row">
+    <div class="col">
+        <center>
+
+            {% if request.cookies.get('username') == 'admin'
+            and request.cookies.get('logged_in') == '1' %}
+                <p>Yer wizard, hacker</p>
+                <marquee><h4>CCTF{W0rsT_aUtH3nt1c4n_3v3r}</h4></marquee>
+            {% else %}
+                <p><strong>Username: </strong> {{ profile.username }}</p>
+                <p><strong>Email: </strong> {{ profile.email }}</p>
+                <p><strong>Joined: </strong> {{ profile.created_at }}</p>
+            {% endif %}
+
+        </center>
+    </div>
+</div>
+{% endblock %}

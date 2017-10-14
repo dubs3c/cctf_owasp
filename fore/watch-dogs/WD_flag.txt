@@ -1,0 +1,3 @@
+How to solve: in the image there is a zip file protected by a password from rockyou.txt "9999strongsad9999"
+
+CCTF{w4tch_d0g5_5h1t_4int_h4ck1ng}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Cookie Jar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+</head>
+<body>
+<br />
+<!--
+    This CTF is brought to you by ChalmersCTF!
+  -->
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <h2 class="text-muted"><a href="/" style="text-decoration: none">The Cookie Jar</a></h2>
+        </div>
+
+        <div class="col">
+
+        {% set navigation_bar = [
+            ('/', 'index', 'Dashboard'),
+            ('/blog', 'blog', 'Blog'),
+            ('/login', 'login', 'Login'),
+            ('/profile', 'profile', 'Profile'),
+            ('/logout', 'logout', 'Logout'),
+            ('/register', 'register', 'Register')
+        ] -%}
+
+        {% set active_page = active_page|default('index') -%}
+
+
+            <ul class="nav nav-pills float-right">
+
+                {% for href, id, caption in navigation_bar %}
+
+                    {% if request.cookies.get('logged_in') == '1' %}
+                        {% if id in ['index', 'blog', 'logout', 'profile'] %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if id == active_page %} active{% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
+                        </li>
+                        {% endif %}
+                    {% else %}
+                        {% if id in ['index', 'blog', 'login', 'register'] %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if id == active_page %} active{% endif %}" href="{{ href|e }}">{{ caption|e }}</a>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+
+
+                {% endfor %}
+
+            </ul>
+        </div>
+
+    </div>
+
+<hr />
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+        {% if category == 'success' %}
+            <div class="alert alert-success" role="alert">
+             <strong>Success!</strong> {{ message }}
+            </div>
+        {% elif category == 'error' %}
+        <div class="alert alert-danger" role="alert">
+          <strong>Error!</strong> {{ message }}
+        </div>
+        {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% block body %}
+{% endblock %}
+
+
+</div>
+
+</body>
+</html>
