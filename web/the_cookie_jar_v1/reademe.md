@@ -1,5 +1,7 @@
 # how to hack
 
+python3.6 is needed to run
+
 När man loggar in sätts en kaka med följande värden:
 username: <username>
 logged_in: 1
