@@ -22,7 +22,9 @@ def login():
         email = escape(request.form['email'])
         password = escape(request.form['password'])
         hashed = util.secure_md5_hashing(password)
-        results = config.query_db(f"select username from users where email='{email}' and password='{hashed}' limit 1", one=True)
+        results = config.query_db("select username from users where \
+                                    email='{email}' and password='{hashed}' limit 1"
+                                    .format(email=email, hashed=hashed), one=True)
         if results:
             flash('You were successfully logged in', 'success')
             resp = app.make_response(redirect(url_for('hello')))
@@ -92,6 +94,13 @@ def register():
 
     return render_template('register.html', error=error)
 
+#################
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+
 if __name__ == '__main__':
     config.init_db()
-    app.run()
+    app.run(host="0.0.0.0")
