@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% set active_page = "index" %}
+{% block body %}
+<br />
+<div class="row">
+    <div class="col">
+
+        <div class="jumbotron">
+          <h1 class="display-3">Hello, cyberspace!</h1>
+          <p class="lead">I've just learned how to program web apps! So cool!</p>
+          <hr class="my-4">
+          <p>Check out my awesome blog posts. Keep in mind, only I can login to my site for now.</p>
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/blog" role="button">Check my posts</a>
+          </p>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <h4>Need a developer?</h4>
+    <p>That might've been one of the shortest assignments in the history of Starfleet. The look in your eyes, I recognize it. You used to have it for me. Your shields were failing, sir. Well, I'll say this for him - he's sure of himself.</p>
+  </div>
+
+  <div class="col">
+    <h4>Such Architecture</h4>
+    <p>Sorry, Data. You did exactly what you had to do. You considered all your options, you tried every alternative and then you made the hard choice. Travel time to the nearest starbase? They were just sucked into space.</p>
+  </div>
+
+  <div class="col">
+    <h4>Awesomeness</h4>
+    <p>Maybe we better talk out here; the observation lounge has turned into a swamp. We finished our first sensor sweep of the neutral zone. The look in your eyes, I recognize it. You used to have it for me.</p>
+  </div>
+
+</div>
+
+{% endblock %}
