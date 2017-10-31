@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% set active_page = "blog" %}
+{% block body %}
+<br />
+
+<div class="row">
+    <div class="col">
+        <center><h2>My blog posts</h2></center>
+    </div>
+</div>
+<br />
+<div class="row">
+    {% for post in posts %}
+        <div class="col">
+            <div class="card" style="width: 20rem; margin-bottom: 1em;">
+              <div class="card-body">
+                <h3 class="card-title">{{ post.title }}</h3>
+                <small>By {{ post.author }} at {{ post.created_at }}</small>
+                <p class="card-text">{{ post.content }}</p>
+                <a href="/blog?blog={{ post.id }}" class="btn btn-primary">Read this</a>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

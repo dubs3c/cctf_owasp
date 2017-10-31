@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% set active_page = "index" %}
+{% block body %}
+<br />
+<div class="row">
+    <div class="col">
+
+        <div class="jumbotron">
+          {% if request.remote_addr == '127.0.0.1' %}
+            <script>window.hasAlerted = false; alert=function(){window.hasAlerted = true;}</script>
+          {% endif %}
+          <h1 class="display-3">Hello, {{ request.args.get('xss')|safe if request.args.get('xss') else 'User'}}!</h1>
+          <p class="lead">Think you can get a alert() to happen?</p>
+          <hr class="my-4">
+              <form action="/" method="get">
+                <input type="text" name="xss">
+                <input type="submit" class="btn btn-success"></input>
+              </form>
+          </p>
+        </div>
+        <form action='/getflag' method='post'>
+            <input name='link' value="http://127.0.0.1:3333/?xss=" size=35>
+            <input type=submit class="btn btn-success">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
