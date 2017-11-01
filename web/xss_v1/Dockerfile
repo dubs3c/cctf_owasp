@@ -10,6 +10,7 @@ COPY . /app
 WORKDIR /app    
     
 RUN pip install -r requirements.txt
+ENV FLAG CCTFXOWASP{on3_r3fl3ct1on_n0_m1rr0r}
 
 #ENTRYPOINT ["python"]
 #CMD ["app.py"]

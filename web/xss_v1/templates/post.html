@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
+{% set active_page = "post" %}
 {% block body %}
 <br />
 
 <div class="row">
     <div class="col">
-        <center>
-            <h2>{{ post.title }}</h2>
-            <small>By Admin at {{ post.created_at }}</small>
-        </center>
+
+        <div class="jumbotron">
+          <center><h1 class="display-3">Get ready to be JUDGED!</h1></center>
+          <p class="lead">Got the alert() to happen for yourself? Send it off to the JUDGE!</p>
+          <center><hr class="my-4">
+            <form action='/getflag' method='post'>
+                <input name='link' value="http://127.0.0.1:3333/?xss=" size=35>
+                <input type=submit class="btn btn-success" onClick="this.form.submit(); this.disabled=true; this.value='Sending…';">
+            </form>
+            <p>(Submit once, wait until the JUDGE have decided your fate. Please don't hammer the JUDGE!)</p>
+          </p>
+          </center>
+        </div>
     </div>
 </div>
-<br />
-<div class="row">
-        <div class="col">
 
-                <p>{{ post.content }}</p>
-        </div>
-</div>
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% set active_page = "index" %}
+{% set active_page = "test" %}
 {% block body %}
 <br />
 <div class="row">
@@ -9,19 +9,16 @@
           {% if request.remote_addr == '127.0.0.1' %}
             <script>window.hasAlerted = false; alert=function(){window.hasAlerted = true;}</script>
           {% endif %}
-          <h1 class="display-3">Hello, {{ request.args.get('xss')|safe if request.args.get('xss') else 'User'}}!</h1>
-          <p class="lead">Think you can get a alert() to happen?</p>
-          <hr class="my-4">
+          <h1 class="display-3">Hello, {{ request.args.get('xss').replace('<script>', '').replace('</script>', '')|safe if request.args.get('xss') else 'User'}}!</h1>
+          <p class="lead">Think you can get a alert() to happen?<br>Enter a XSS in the form below, once you have gotten it to work for yourself go and see the JUDGE!</p>
+          <center><hr class="my-4">
               <form action="/" method="get">
+                <p>Feed me XSS:es in excess!</p>
                 <input type="text" name="xss">
                 <input type="submit" class="btn btn-success"></input>
               </form>
-          </p>
+          </p></center>
         </div>
-        <form action='/getflag' method='post'>
-            <input name='link' value="http://127.0.0.1:3333/?xss=" size=35>
-            <input type=submit class="btn btn-success">
-        </form>
     </div>
 </div>
 

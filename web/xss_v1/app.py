@@ -28,15 +28,17 @@ var page = require("webpage").create();
 page.open(atob("__URL__"))
     .then(function(status){
         x=1;
-        alerted = page.evaluate(function(){
-            return window.hasAlerted;
-        });
-        if(alerted){
-            console.log("WIN");
-        }else{
-            console.log("FAIL");
-        }
-        slimer.exit();
+        setTimeout(function(){
+            alerted = page.evaluate(function(){
+                return window.hasAlerted;
+            });
+            if(alerted){
+                console.log("WIN");
+            }else{
+                console.log("FAIL");
+            }
+            slimer.exit();
+        }, 4000);
 });
     '''
     with open(path, 'w') as f:
@@ -72,6 +74,10 @@ def after_request(response):
     response.headers.add('X-Frame-Options', 'deny')
     return response
 
+@app.route('/post')
+def testflag():
+    return render_template('post.html')
+    
 @app.route('/')
 def main():
     return render_template('index.html')
