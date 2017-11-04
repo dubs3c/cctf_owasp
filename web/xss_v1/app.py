@@ -3,7 +3,7 @@
 import time
 import subprocess
 import hashlib
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from flask_limiter import Limiter
 import os
 import config
@@ -64,9 +64,9 @@ def getflag():
         return "Link must start with "+config.PROTOCOL+'://'+config.HOST+':'+str(config.PORT)+'/'
     if link:
         if check_link(link):
-            return os.environ["FLAG"]
+            return redirect(url_for('main', xss=os.environ["FLAG"]))
         else:
-            return "Nope"
+            return redirect(url_for('main', xss="Nope"))
 
 @app.after_request
 def after_request(response):
@@ -74,7 +74,7 @@ def after_request(response):
     response.headers.add('X-Frame-Options', 'deny')
     return response
 
-@app.route('/post')
+@app.route('/judge')
 def testflag():
     return render_template('post.html')
     
