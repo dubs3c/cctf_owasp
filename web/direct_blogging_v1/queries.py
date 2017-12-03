@@ -4,7 +4,7 @@ from time import gmtime, strftime
 def get_all_posts():
     cur = config.query_db(
         "select * \
-        from posts p \
+        from posts \
         WHERE published = 1")
     return cur
 

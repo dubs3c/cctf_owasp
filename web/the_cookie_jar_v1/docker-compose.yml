@@ -1,0 +1,6 @@
+version: '3.1'
+services:
+    the_cookie_jar:
+        build: .
+        ports:
+            - "8182:8000"
