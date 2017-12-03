@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+<ul class="topnav">
+    <li class="right"><a class="titletext">XSS är roligt!</a></li>
+    <li><a class="active" href="/judge">DOMAREN!</a></li>
+    <li><a href="/">Test</a></li>
+</ul>
+<br />
+
+<div class="jumbotron">
+  <h1 class="display-3">Var bered att möte DOMAREN!</h1>
+  <p class="lead">Lyckades få alert() att hända? Skicka den till DOMAREN!</p>
+  <hr class="my-4">
+    <form action='/getflag' method='post'>
+        <input name='link' value="http://127.0.0.1:3333/?xss=" size=35>
+        <input type=submit class="btn btn-success" onClick="this.form.submit(); this.disabled=true; this.value='Skickar…';">
+    </form>
+    <p>(Skicka in en gång tills DOMAREN har bestämt sig. Snälla, hamra inte DOMAREN!)</p>
+  </p>
+</div>
+
+{% endblock %}
