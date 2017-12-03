@@ -1,0 +1,2 @@
+docker build . -t cctf/xss_v2
+docker run -it -p 5555:5555 cctf/xxs_v2
