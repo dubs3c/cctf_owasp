@@ -1,0 +1,6 @@
+version: '3.1'
+services:
+    direct_blogging:
+        build: .
+        ports:
+            - "8181:8000"
