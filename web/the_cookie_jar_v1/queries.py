@@ -16,6 +16,12 @@ def get_post(slug):
         where p.slug=?", [slug], one=True)
     return cur
 
+def user_exists(username):
+    cur = config.query_db("select username from users where username=?", [username], one=True)
+    if cur:
+        return True
+    else:
+        return False
 
 def get_profile(username):
     cur = config.query_db("select username, email, created_at from users where username=?", [username], one=True)

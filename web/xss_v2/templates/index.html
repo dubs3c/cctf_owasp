@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+<ul class="topnav">
+    <li class="right"><a class="titletext">XSS är roligt!</a></li>
+    <li><a href="/judge">DOMAREN!</a></li>
+    <li><a class="active" href="/">Test</a></li>
+</ul>
+
+<br />
+<div class="jumbotron">
+  {% if request.remote_addr == '127.0.0.1' %}
+    <script>window.hasAlerted = false; alert=function(){window.hasAlerted = true;}</script>
+  {% endif %}
+  <h1 class="display-3">Hej, {{ request.args.get('xss').replace('<script>', '').replace('</script>', '')|safe if request.args.get('xss') else 'User'}}!</h1>
+  <p class="lead">Här ska du försöka få JavaScript funktionen alert() hända IGEN (men den här gången filtrerar vi lite så du får vara lite lurig!) genom att utföra en så kallad <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">XSS</a>. <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)">XSS</a> är en väldigt vanlig web-sårbarhet! Det är en form av injektion där ens input blir behandlat som kod!<br>När du lyckats få det att hända för dig själv på den här sidan, gå till JUDGE och skicka in url:en där du lyckades! Efter det får du flaggan!</p>
+  <hr class="my-4">
+      <form action="/" method="get">
+        <input type="text" name="xss">
+        <input type="submit" class="btn btn-success"></input>
+      </form>
+      <p>Mata mig med XSS:er!</p>
+  </p>
+</div>
+{% endblock %}

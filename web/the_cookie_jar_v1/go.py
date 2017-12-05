@@ -82,15 +82,18 @@ def register():
         username = escape(request.form['username'])
         password = escape(request.form['password'])
         hashed = util.secure_md5_hashing(password)
-        registered = qry.register_account(username, email, hashed)
-        if registered:
-            flash('You were successfully registered', 'success')
-            resp = app.make_response(redirect(url_for('hello')))
-            resp.set_cookie('username', value=username)
-            resp.set_cookie('logged_in', value='1')
-            return resp
+        if not qry.user_exists(username):
+            registered = qry.register_account(username, email, hashed)
+            if registered:
+                flash('You were successfully registered', 'success')
+                resp = app.make_response(redirect(url_for('hello')))
+                resp.set_cookie('username', value=username)
+                resp.set_cookie('logged_in', value='1')
+                return resp
+            else:
+                error = 'Something went wrong when registring your account'
         else:
-            error = 'Something went wrong when registring your account'
+            error = 'The cyberspace is not big enough for the both of you...'
 
     return render_template('register.html', error=error)
 

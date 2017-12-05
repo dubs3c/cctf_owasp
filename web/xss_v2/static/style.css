@@ -1,0 +1,89 @@
+body {
+    background-color: darkslategray;
+}
+
+.jumbotron {
+    margin: auto;
+    object-position: 50% 50%;
+    width: 80%;
+    height: 600px;
+}
+
+ul.topnav {
+    margin: auto;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {
+    float: right;
+}
+
+ul.topnav li.right {
+    float: left;
+    padding-left: 15%
+}
+
+ul.topnav li:nth-child(2) {
+    padding-right: 15%;
+}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active):not(.titletext) {
+    background-color: #111;
+}
+
+ul.topnav li a.active {
+    background-color: #4CAF50;
+}
+
+ul.topnav li a.titletext {
+    color: white;
+    font-weight: 500;
+}
+
+ul.topnav li a.titletext:hover {
+    color: white;
+}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right,
+    ul.topnav li {
+        float: none;
+    }
+
+    ul.topnav {
+        padding: 0;
+    }
+
+    ul.topnav li:nth-child(2) {
+        padding-right: 0px;
+    }
+
+    ul.topnav li.right {
+        padding-left: 0px;
+    }
+
+    ul.topnav li a.titletext {
+        padding-left: 0px;
+    }
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
