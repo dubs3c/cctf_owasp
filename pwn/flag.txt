@@ -1,0 +1,1 @@
+CCTF{That_was_an_easy_pwnable}

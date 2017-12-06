@@ -1,0 +1,1 @@
+CCTF{this_is_not_reversing_this_is_not_crypto_this_is_just_playing_with_code}
